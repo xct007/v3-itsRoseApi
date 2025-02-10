@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
     workflow_dispatch:
     workflow_run:
-        workflows: ["CI Runners (Node.js)"]
+        workflows: ["CI Runners"]
         branches:
             - main
         types:
@@ -28,7 +28,7 @@ jobs:
                   port: ${{ secrets.PROD_PORT }}
                   passphrase: ${{ secrets.PROD_PASSPHRASE }}
                   script: |
-                      cd ~/${{ secrets.PROD_USER }}
+                      cd ~/${{ secrets.PROD_USER }}/.d
                       if [ -d ".d-v3" ]; then
                           cd .d-v3
                           git pull origin main

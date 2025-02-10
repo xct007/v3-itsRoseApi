@@ -1,4 +1,4 @@
-name: CI Runners (Node.js)
+name: CI Runners
 
 on:
     push:
