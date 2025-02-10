@@ -28,7 +28,7 @@ jobs:
                   port: ${{ secrets.PROD_PORT }}
                   passphrase: ${{ secrets.PROD_PASSPHRASE }}
                   script: |
-                      cd ~/${{ secrets.PROD_USER }}/.d
+                      cd ~/$HOME/.d
                       if [ -d ".d-v3" ]; then
                           cd .d-v3
                           git pull origin main
