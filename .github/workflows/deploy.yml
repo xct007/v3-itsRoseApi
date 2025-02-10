@@ -33,7 +33,7 @@ jobs:
                           cd .d-v3
                           git pull origin main
                       else
-                          git clone ${{ github.repository }} .d-v3
+                          git clone https://github.com/${{ github.repository }} .d-v3
                           cd .d-v3
                       fi
                       npm install
