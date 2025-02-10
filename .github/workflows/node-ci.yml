@@ -4,9 +4,13 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "src/**"
     pull_request:
         branches:
             - main
+        paths:
+            - "src/**"
 
 jobs:
     build:
@@ -20,12 +24,12 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Set up Node.js
+            - name: Set up Environments
               uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
 
-            - name: Install dependencies
+            - name: Set up project
               run: npm ci
 
             - name: Build project
