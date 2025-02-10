@@ -5,16 +5,17 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
 	{
-		ignores: [
-			"public/**/*",
-			"dist/**/*",
-			"__tests__/**/*",
-			"node_modules/**/*",
-			"coverage/**/*",
-		],
+		ignores: ["dist/**/*", "__tests__/**/*"],
 		files: ["src/**/*.ts"],
 	},
-	{ languageOptions: { globals: globals.node } },
+	{
+		languageOptions: {
+			globals: {
+				...globals.node,
+				ApiError: "readonly",
+			},
+		},
+	},
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
 	{
