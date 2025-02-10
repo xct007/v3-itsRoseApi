@@ -2,11 +2,14 @@ import * as assert from "node:assert";
 import test from "node:test";
 import { build } from "../helper.js";
 
-test("example is loaded", async (t) => {
+test("General route /me", async (t) => {
 	const app = await build(t);
 
 	const res = await app.inject({
-		url: "/example",
+		url: "/me",
+		headers: {
+			authorization: `Bearer ${process.env.TEST_TOKEN}`,
+		},
 	});
 
 	assert.equal(res.payload, "this is an example");

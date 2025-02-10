@@ -2,11 +2,13 @@ import * as assert from "node:assert";
 import { test } from "node:test";
 import { build } from "../helper.js";
 
-test("default root route", async (t) => {
+test("General route /status", async (t) => {
 	const app = await build(t);
 
 	const res = await app.inject({
-		url: "/",
+		url: "/status",
 	});
-	assert.deepStrictEqual(JSON.parse(res.payload), { root: true });
+	assert.deepStrictEqual(JSON.parse(res.payload), {
+		ok: true,
+	});
 });

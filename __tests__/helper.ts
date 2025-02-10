@@ -16,7 +16,7 @@ const AppPath = path.join(__dirname, "..", "src", "app.ts");
 // needed for testing the application
 function config() {
 	return {
-		skipOverride: true, // Register our application with fastify-plugin
+		skipOverride: false, // Register our application with fastify-plugin
 	};
 }
 
@@ -30,7 +30,6 @@ async function build(t: TestContext) {
 	// different from the production setup
 	const app = await helper.build(argv, config());
 
-	// Tear down our app after we are done
 	t.after(() => void app.close());
 
 	return app;
