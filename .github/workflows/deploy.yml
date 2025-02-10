@@ -28,7 +28,10 @@ jobs:
                   port: ${{ secrets.PROD_PORT }}
                   passphrase: ${{ secrets.PROD_PASSPHRASE }}
                   script: |
-                      cd ~/$HOME/.d
+                      #!/usr/bin/env bash
+                      cd $HOME/.d
+                      source ~/.bashrc
+
                       if [ -d ".d-v3" ]; then
                           cd .d-v3
                           git pull origin main
@@ -36,5 +39,5 @@ jobs:
                           git clone https://github.com/${{ github.repository }} .d-v3
                           cd .d-v3
                       fi
-                      npm install
-                      npm run build
+                      npm install --production --silent
+                      npm run build --if-present --silent
