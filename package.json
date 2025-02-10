@@ -16,7 +16,7 @@
 		"watch": "tsc -w",
 		"dev": "npm run build && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch\" \"npm:dev:start\"",
 		"dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-		"lint": "eslint .",
+		"lint": "eslint src/**/*.ts",
 		"format": "prettier --write src/**/*.ts",
 		"clean": "rm -rf dist"
 	},
