@@ -39,5 +39,5 @@ jobs:
                           git clone https://github.com/${{ github.repository }} .d-v3
                           cd .d-v3
                       fi
-                      npm install --production --silent
+                      npm install --silent
                       npm run build --if-present --silent
