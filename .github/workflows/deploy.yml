@@ -8,9 +8,6 @@ on:
             - main
         types:
             - completed
-    push:
-        branches:
-            - main
 
 jobs:
     on-success:
@@ -29,6 +26,7 @@ jobs:
                   username: ${{ secrets.PROD_USER }}
                   key: ${{ secrets.PROD_KEY }}
                   port: ${{ secrets.PROD_PORT }}
+                  passphrase: ${{ secrets.PROD_PASSPHRASE }}
                   script: |
                       cd ~/${{ secrets.PROD_USER }}
                       if [ -d ".d-v3" ]; then
