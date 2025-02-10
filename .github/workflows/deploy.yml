@@ -1,0 +1,42 @@
+name: Deploy to Production
+
+on:
+    workflow_dispatch:
+    workflow_run:
+        workflows: ["CI Runners (Node.js)"]
+        branches:
+            - main
+        types:
+            - completed
+    push:
+        branches:
+            - main
+
+jobs:
+    on-success:
+        name: Deploy to Production
+        runs-on: ubuntu-latest
+        if: github.event.workflow_run.conclusion == 'success'
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Setting up server
+              uses: appleboy/ssh-action@v0.1.5
+              with:
+                  host: ${{ secrets.PROD_HOST }}
+                  username: ${{ secrets.PROD_USER }}
+                  key: ${{ secrets.PROD_KEY }}
+                  port: ${{ secrets.PROD_PORT }}
+                  script: |
+                      cd ~/${{ secrets.PROD_USER }}
+                      if [ -d ".d-v3" ]; then
+                          cd .d-v3
+                          git pull origin main
+                      else
+                          git clone ${{ github.repository }} .d-v3
+                          cd .d-v3
+                      fi
+                      npm install
+                      npm run build
