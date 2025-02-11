@@ -1,4 +1,4 @@
-class ApiError extends Error {
+export class ApiError extends Error {
 	code = 500;
 
 	constructor(message: string, code: number) {
@@ -15,5 +15,3 @@ interface Global {
 }
 
 (globalThis as unknown as Global).ApiError = ApiError;
-
-export {};
