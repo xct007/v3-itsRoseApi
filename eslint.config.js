@@ -63,6 +63,8 @@ export default [
 					varsIgnorePattern: "^_",
 				},
 			],
+			// disable any rule that is already covered by typescript
+			"@typescript-eslint/no-explicit-any": "off",
 		},
 	},
 ];
