@@ -7,18 +7,6 @@
 		"module": "ESNext",
 		"target": "ES2022",
 		"esModuleInterop": true
-		// "target": "esnext",
-		// "lib": ["esnext", "dom"],
-		// "baseUrl": "./",
-		// "paths": {
-		// 	"@/*": ["src/*"],
-		// 	"@test/*": ["test/*"]
-		// },
-		// "module": "esnext",
-		// "moduleResolution": "node",
-		// "sourceMap": true,
-		// "esModuleInterop": true,
-		// "outDir": "dist"
 	},
 	"include": ["src/**/*"]
 }
