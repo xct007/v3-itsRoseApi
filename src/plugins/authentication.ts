@@ -2,20 +2,17 @@ import { RouteOptions } from "fastify";
 import fp from "fastify-plugin";
 import { getUserSubscription } from "../database";
 
-export default fp(
-	async (fastify) => {
-		void fastify.addHook("onRoute", (routeOptions) => {
-			// default auth to true
-			const shouldAddAuth = routeOptions.config?.auth ?? true;
-			const currentRoute = routeOptions.url;
+export default fp(async (fastify) => {
+	void fastify.addHook("onRoute", (routeOptions) => {
+		// default auth to true
+		const shouldAddAuth = routeOptions.config?.auth ?? true;
+		const currentRoute = routeOptions.url;
 
-			if (shouldAddAuth && !currentRoute.includes("/docs")) {
-				addRouteAuthHook(routeOptions);
-			}
-		});
-	},
-	{ name: "authentication" }
-);
+		if (shouldAddAuth && !currentRoute.includes("/docs")) {
+			addRouteAuthHook(routeOptions);
+		}
+	});
+});
 
 const addRouteAuthHook = (routeOptions: RouteOptions) => {
 	routeOptions.preValidation = async (request, reply) => {
