@@ -1,5 +1,5 @@
 import Swagger from "@fastify/swagger";
-import fastifySwaggerUi from "@fastify/swagger-ui";
+// import fastifySwaggerUi from "@fastify/swagger-ui";
 import fp from "fastify-plugin";
 import { S } from "fluent-json-schema";
 import { description, tags } from "../locals/swagger.js";
@@ -22,7 +22,6 @@ const servers = [
 	},
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const addErrorResponses = (obj: any) => {
 	for (const path in obj.openapiObject.paths) {
 		const method = Object.keys(obj.openapiObject.paths[path])[0];
@@ -82,6 +81,39 @@ const addErrorResponses = (obj: any) => {
 	return obj;
 };
 
+const scalarOpenApi = () => {
+	const config = {
+		spec: {
+			url: "/docs/json",
+		},
+		metaData: {
+			title: "Developer API Reference",
+			description: "ItsRose x Lovita API reference for developers",
+		},
+		theme: "deepSpace",
+	};
+	const configString = JSON.stringify(config).split('"').join("&quot;");
+
+	return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer API Reference</title>
+</head>
+<body>
+<script
+  id="api-reference"
+  type="application/json"
+  data-configuration="${configString}">
+</script>
+<script src="https://scdn.lovita.io/static/scalar%40api-reference_standalone%401.25.61.js"></script>
+</body>
+</html>
+  `;
+};
+
 export default fp(async (fastify) => {
 	void fastify.addSchema(
 		S.object()
@@ -135,7 +167,10 @@ export default fp(async (fastify) => {
 		transformObject: addErrorResponses,
 	});
 
-	void fastify.register(fastifySwaggerUi, {
-		routePrefix: "/docs",
+	void fastify.get("/docs/json", async (_request, reply) => {
+		reply.send(fastify.swagger());
+	});
+	void fastify.get("/docs", async (_request, reply) => {
+		reply.type("text/html").send(scalarOpenApi());
 	});
 });
