@@ -1,22 +1,14 @@
-<<<<<<< HEAD
 import * as functions from "./functions";
 import * as schema from "./schema";
 import { GptVulcanService } from "./vulcan";
 
 export class GptApi extends GptVulcanService {
-=======
-import * as schema from "./schema";
-import { GptVulcanService } from "./vulcan";
-
-class GptApi extends GptVulcanService {
->>>>>>> origin/main
 	schema = schema;
 
 	constructor() {
 		super();
 	}
 
-<<<<<<< HEAD
 	private _isInternalFunction(fns: any[], fn: any) {
 		return fns.some((f) => f.name === fn);
 	}
@@ -55,22 +47,15 @@ class GptApi extends GptVulcanService {
 		return message;
 	}
 
-=======
->>>>>>> origin/main
 	async chat(options: any) {
 		const {
 			model,
 			messages,
-<<<<<<< HEAD
 			functions: user_fn,
-=======
-			// functions: user_fn,
->>>>>>> origin/main
 			tool_choice,
 			tools,
 		} = options;
 
-<<<<<<< HEAD
 		const internal_functions = Object.keys(functions).map(
 			(fn) => functions[fn as keyof typeof functions].descriptor
 		);
@@ -117,32 +102,4 @@ class GptApi extends GptVulcanService {
 	}
 }
 
-=======
-		const body = {
-			model,
-			messages,
-			// ...(used_fns.length > 0 && { functions: used_fns }),
-			tool_choice,
-			tools,
-		};
-
-		const data = await this.callGpt(body);
-		return {
-			model,
-			message: data.choices[0].message,
-		};
-	}
-
-	// private _createCb(fields: any) {
-	// 	return (form: FormData) => {
-	// 		form.append(
-	// 			"images[]",
-	// 			new Blob([fields.data], { type: "image/*" }),
-	// 			fields.originalName
-	// 		);
-	// 		return form;
-	// 	};
-	// }
-}
->>>>>>> origin/main
 export const gpt = new GptApi();
