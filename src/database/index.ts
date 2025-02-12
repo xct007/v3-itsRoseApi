@@ -1,6 +1,6 @@
-import clientPromise from "./client.js";
-import { User, UserModel } from "./models.js";
-import { isPlanActive } from "./utils.js";
+import clientPromise from "./client";
+import { User, UserModel } from "./models";
+import { isPlanActive } from "./utils";
 
 export async function getUserSubscription(
 	apiKey: string
