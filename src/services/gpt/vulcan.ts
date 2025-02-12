@@ -45,8 +45,6 @@ export class GptVulcanService extends Helper {
 			throw new axiosFetch.ApiError("Access failed", 401);
 		}
 		this._jwtOptions.accessToken = data.AccessToken;
-
-		// response ie: '2025-02-12T02:20:10.716939476Z'
 		this._jwtOptions.accessTokenExpiration =
 			new Date(data.AccessTokenExpiration).getTime() / 1000;
 	}
