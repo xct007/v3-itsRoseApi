@@ -1,6 +1,10 @@
 {
 	"compilerOptions": {
+<<<<<<< HEAD
 		"module": "CommonJS",
+=======
+		"module": "ESNext",
+>>>>>>> origin/main
 		"moduleResolution": "node",
 		"target": "es2020",
 		"lib": ["es2020"],
@@ -8,7 +12,13 @@
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+<<<<<<< HEAD
 		"strict": true
+=======
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true
+>>>>>>> origin/main
 	},
 	"include": ["src/**/*"]
 }
