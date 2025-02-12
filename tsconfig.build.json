@@ -6,6 +6,8 @@
 		"moduleResolution": "node",
 		"noEmit": false,
 		"outDir": "dist",
-		"sourceMap": true
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"removeComments": true
 	}
 }

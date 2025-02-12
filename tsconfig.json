@@ -1,12 +1,16 @@
 {
-	"extends": "fastify-tsconfig",
 	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"target": "es2020",
+		"lib": ["es2020"],
 		"outDir": "dist",
 		"sourceMap": true,
-		"moduleResolution": "node",
-		"module": "ESNext",
-		"target": "ES2022",
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true
 	},
 	"include": ["src/**/*"]
 }
