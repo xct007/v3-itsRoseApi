@@ -10,7 +10,7 @@ on:
             - completed
 
 jobs:
-    on-success:
+    deploy:
         name: Deploy to Production
         runs-on: ubuntu-latest
         if: github.event.workflow_run.conclusion == 'success'
