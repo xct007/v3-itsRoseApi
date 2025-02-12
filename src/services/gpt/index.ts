@@ -71,7 +71,7 @@ export class GptApi extends GptVulcanService {
 		this._stringifyMessagesContent(body.messages);
 
 		const data = await this.callGpt(body);
-		let choice = data.choices[0];
+		const choice = data.choices[0];
 
 		const function_call = choice?.message?.function_call || null;
 		if (

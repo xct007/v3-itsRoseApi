@@ -6,8 +6,6 @@ import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 import "./error.js";
 
-// we build it with ESM, so we need to use `import.meta.url` to get the current file path
-// @ts-ignore
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
