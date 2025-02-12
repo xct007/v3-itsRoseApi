@@ -41,6 +41,4 @@ jobs:
                       fi
                       npm install --silent
                       npm run build --if-present --silent
-                      pm2 delete ".d-v3"
-                      pm2 start "npm run start" --name ".d-v3"
-                      pm2 save
+                      pm2 reload ".d-v3"
