@@ -1,8 +1,4 @@
 {
-<<<<<<< HEAD
 	"targets": [{ "extname": ".mjs", "module": "esnext" }],
-=======
-	"targets": [{ "extname": ".js", "module": "esnext" }],
->>>>>>> origin/main
 	"projects": ["tsconfig.build.json"]
 }
