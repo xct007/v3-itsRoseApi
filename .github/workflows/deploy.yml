@@ -10,7 +10,7 @@ on:
             - completed
 
 jobs:
-    on-success:
+    deploy:
         name: Deploy to Production
         runs-on: ubuntu-latest
         if: github.event.workflow_run.conclusion == 'success'
@@ -41,3 +41,6 @@ jobs:
                       fi
                       npm install --silent
                       npm run build --if-present --silent
+                      pm2 delete ".d-v3"
+                      pm2 start "npm run start" --name ".d-v3"
+                      pm2 save

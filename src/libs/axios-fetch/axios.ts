@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
 		"Content-Type": "application/json",
 	},
 	validateStatus: () => true,
+	throwError: true,
 });
 
 axiosInstance.ApiError = ApiError;
@@ -19,7 +20,7 @@ axiosInstance.ApiError = ApiError;
 axiosInstance.interceptors.response.use(
 	// reject promise if response status is not 200
 	(response) => {
-		if (response.status !== 200) {
+		if (response.status !== 200 && response.config.throwError) {
 			console.error(response);
 			throw new ApiError(
 				"An error occurred while processing your request.",
@@ -41,6 +42,10 @@ axiosInstance.interceptors.response.use(
 declare module "axios" {
 	interface AxiosInstance {
 		ApiError: typeof ApiError;
+	}
+	// add throwError in axios config
+	interface AxiosRequestConfig {
+		throwError?: boolean;
 	}
 }
 
