@@ -20,10 +20,7 @@ export class GptVulcanService extends Helper {
 	}
 
 	private async _fetchToken() {
-		if (
-			this._jwtOptions.accessToken &&
-			this._jwtOptions.accessTokenExpiration > Date.now()
-		) {
+		if (this._jwtOptions.accessTokenExpiration > Date.now() / 1000) {
 			return;
 		}
 		this._jwtOptions.deviceId = this._generateDeviceId();
@@ -48,9 +45,10 @@ export class GptVulcanService extends Helper {
 			throw new axiosFetch.ApiError("Access failed", 401);
 		}
 		this._jwtOptions.accessToken = data.AccessToken;
-		this._jwtOptions.accessTokenExpiration = Math.floor(
-			new Date(data.AccessTokenExpiration).getTime() / 1000
-		);
+
+		// response ie: '2025-02-12T02:20:10.716939476Z'
+		this._jwtOptions.accessTokenExpiration =
+			new Date(data.AccessTokenExpiration).getTime() / 1000;
 	}
 
 	private async _makeRequest(config: Parameters<typeof axiosFetch>[1]) {

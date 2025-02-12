@@ -1,7 +1,7 @@
 import * as schema from "./schema";
 import { GptVulcanService } from "./vulcan";
 
-class GptApi extends GptVulcanService {
+export class GptApi extends GptVulcanService {
 	schema = schema;
 
 	constructor() {

@@ -18,5 +18,6 @@
 			"parameters": ["--loader", "ts-node/esm"]
 		}
 	],
-	"typescript.tsdk": "./node_modules/typescript/lib"
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"jest.runMode": "on-demand"
 }
