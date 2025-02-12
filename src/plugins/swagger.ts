@@ -10,14 +10,14 @@ const servers = [
 		url:
 			process.env.NODE_ENV === "development"
 				? "http://localhost:3333"
-				: "https://api.itsrose.rest",
+				: "https://v3-api.itsrose.rest",
 		description: "Production server",
 	},
 	{
 		url:
 			process.env.NODE_ENV === "development"
 				? "http://localhost:3333"
-				: "https://api.lovita.io",
+				: "https://v3-api.lovita.io",
 		description: "Production server (alias)",
 	},
 ];
